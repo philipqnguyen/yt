@@ -55,6 +55,7 @@ module Yt
           end
 
           if include_claim
+            included_relationships.append(:claim)
             video_ids = items.map{|item| item['id']['videoId']}.uniq
             conditions = { video_id: video_ids.join(',') }
             claims = Collections::Claims.new(auth: @auth, parent: @parent).where conditions
